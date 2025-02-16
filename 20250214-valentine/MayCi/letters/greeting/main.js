@@ -5,6 +5,7 @@ $(document).ready(function () {
     const timeToMeetOnValentineDay = '2025-02-14T17:30:00'
 
     let isShowTextCenter = false;
+    let canHideTextCenter = true;
     let canShowTotalLovedTimerDiv = ((new Date('2025-02-16T00:00:00')) - (new Date())) < 0;
     let canShowCountdownToMeetDiv = ((new Date('2025-02-14T19:00:00')) - (new Date())) > 0;
     let canShowTotalMeetTimerDiv = ((new Date('2025-02-14T19:00:00')) - (new Date())) < 0;
@@ -112,8 +113,10 @@ $(document).ready(function () {
     }
 
     function hideTextCenter() {
-        $(".text-center").fadeOut("slow");
-        isShowTextCenter = false;
+        if (canHideTextCenter) {
+            $(".text-center").fadeOut("slow");
+            isShowTextCenter = false;
+        }
     }
 
     function calculatorTimer() {
@@ -147,11 +150,11 @@ $(document).ready(function () {
 
     setTimeout(() => {
         showTextCenter();
-    }, 8000);
+    }, 6000);
 
     setTimeout(() => {
         hideTextCenter();
-    }, 15000);
+    }, 9000);
 
     setTimeout(() => {
         setInterval(() => {
@@ -161,7 +164,7 @@ $(document).ready(function () {
                 showTextCenter();
             }
         }, 3500);
-    }, 16000);
+    }, 10000);
 
     $(".container")
         .mouseenter(function () {
@@ -179,7 +182,9 @@ $(document).ready(function () {
 
             setTimeout(() => {
                 showTextCenter();
-            }, 3000);
+            }, 1500);
+
+            canHideTextCenter = false;
         })
         .mouseleave(function () {
             $(".card").stop().animate(
@@ -191,7 +196,9 @@ $(document).ready(function () {
 
             setTimeout(() => {
                 hideTextCenter();
-            }, 3000);
+            }, 2000);
+
+            canHideTextCenter = true;
         });
 });
 
